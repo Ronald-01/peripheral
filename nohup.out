@@ -1,0 +1,43 @@
+2023-03-17 23:24:21,531 INFO sqlalchemy.engine.Engine SELECT DATABASE()
+2023-03-17 23:24:21,531 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:24:21,541 INFO sqlalchemy.engine.Engine SELECT @@sql_mode
+2023-03-17 23:24:21,541 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:24:21,544 INFO sqlalchemy.engine.Engine SELECT @@lower_case_table_names
+2023-03-17 23:24:21,544 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:24:21,556 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-17 23:24:21,556 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`mice`
+2023-03-17 23:24:21,556 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:24:21,729 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`keyboard`
+2023-03-17 23:24:21,729 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:24:21,744 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`user`
+2023-03-17 23:24:21,744 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:24:21,750 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`collection`
+2023-03-17 23:24:21,750 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:24:21,754 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Started server process [1980]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
+2023-03-17 23:29:08,089 INFO sqlalchemy.engine.Engine SELECT DATABASE()
+2023-03-17 23:29:08,089 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:29:08,090 INFO sqlalchemy.engine.Engine SELECT @@sql_mode
+2023-03-17 23:29:08,090 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:29:08,091 INFO sqlalchemy.engine.Engine SELECT @@lower_case_table_names
+2023-03-17 23:29:08,091 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:29:08,092 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2023-03-17 23:29:08,092 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`mice`
+2023-03-17 23:29:08,092 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:29:08,128 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`keyboard`
+2023-03-17 23:29:08,129 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:29:08,131 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`user`
+2023-03-17 23:29:08,131 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:29:08,133 INFO sqlalchemy.engine.Engine DESCRIBE `peripheral`.`collection`
+2023-03-17 23:29:08,133 INFO sqlalchemy.engine.Engine [raw sql] {}
+2023-03-17 23:29:08,134 INFO sqlalchemy.engine.Engine COMMIT
+INFO:     Started server process [2818]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+/home/peripheral/database/sql_config.ini
+INFO:     52.221.215.51:48010 - "GET /docs HTTP/1.1" 200 OK
+INFO:     52.221.215.51:48010 - "GET /openapi.json HTTP/1.1" 200 OK

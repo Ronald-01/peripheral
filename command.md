@@ -30,3 +30,8 @@ deactivate
 ```shell
 pip install -r requirements.txt
 ```
+终端关闭后仍然运行：
+```shell
+nohup python filename.py &
+如：nohup python setup.py &
+```
