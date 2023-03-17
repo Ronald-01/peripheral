@@ -51,7 +51,7 @@ class User(Base):
     number = Column(String(30), nullable=False, unique=True, comment='账户')
 
     name = Column(String(30), nullable=False, comment='用户名')
-    password = Column(String(30), nullable=False, comment='密码')
+    password = Column(String(100), nullable=False, comment='密码')
     right = Column(Integer, comment='管理员权限')
 
 
