@@ -10,8 +10,7 @@ router = APIRouter(prefix='/keyboard', tags=['键盘'])
 @router.post('/create', response_model=classdemo.message)
 async def create_keyboard(keyboard_form: classdemo.Keyboard,
                           db: Session = Depends(get_db)):
-    db_keyboard = datamodel.Collection(
-        id=keyboard_form.id,
+    db_keyboard = datamodel.Keyboard(
         name=keyboard_form.name,
         list_date=keyboard_form.list_date,
         product_position=keyboard_form.product_position,

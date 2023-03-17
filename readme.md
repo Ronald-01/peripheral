@@ -43,11 +43,19 @@ pip install mysql-connector
 
 ### 运行之前
 
+
  配置根目录下的sql_config.ini中数据库账户密码
 
  注意 security不用更改，与token的设置和密码加密有关，其中access_token_expire_minutes表示token有效时间
 
 ### 运行
+进入虚拟环境
+```shell
+[root@VM-8-11-centos peripheral]# source code/bin/activate
+(code) [root@VM-8-11-centos peripheral]# 
+
+```
+
 
 1. reload为可选参数,添加表示热加载,即代码更改后会即时反映到服务器上,不用重新输入命令重启服务器
 

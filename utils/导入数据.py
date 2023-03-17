@@ -14,7 +14,7 @@ for file_name in os.listdir(folder_path):
             # 不用将其转化为字典，因为fastapi接口是双引号，而字典是单引号
             # json_data = json.load(fp)
         type_name = file_name.split('_')[1].split('.')[0]
-        url = 'http://127.0.0.1:8000/' + type_name + '/create'
+        url = 'http://127.0.0.1:4000/' + type_name + '/create'
         # print(url)
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
