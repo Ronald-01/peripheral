@@ -13,29 +13,34 @@ if not os.path.exists('./picture'):
 if not os.path.exists('./data'):
     os.mkdir('./data')
 
-url = 'https://detail.zol.com.cn/keyboard/'
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
-}
-# 获取键盘页面的html文档
-page_text = requests.get(url=url, headers=headers).text
-# 将其实例化至tree中
-compare_tree = etree.HTML(page_text)
-keyboard_li = compare_tree.xpath('//*[@id="J_PicMode"]/li')
+# 初始化键盘列表
 keyboard_list = []
-for index in keyboard_li:
-    keyboard_id = index.xpath('./@data-follow-id')
-    keyboard_name = index.xpath('./a/img/@alt')
-    if keyboard_id:
-        # print(mice_id[0].split('p')[1])
-        # print(mice_name[0])
-        keyboard = classdemo.Keyboard(
-            id=int(keyboard_id[0].split('p')[1]),
-            name=keyboard_name[0]
-        )
-        keyboard_list.append(keyboard)
-    else:
-        continue
+
+# 获取前三页
+for num in range(1, 4):
+
+    url = 'https://detail.zol.com.cn/keyboard/' + str(num) + '.html'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
+    }
+    # 获取键盘页面的html文档
+    page_text = requests.get(url=url, headers=headers).text
+    # 将其实例化至tree中
+    compare_tree = etree.HTML(page_text)
+    keyboard_li = compare_tree.xpath('//*[@id="J_PicMode"]/li')
+    for index in keyboard_li:
+        keyboard_id = index.xpath('./@data-follow-id')
+        keyboard_name = index.xpath('./a/img/@alt')
+        if keyboard_id:
+            # print(mice_id[0].split('p')[1])
+            # print(mice_name[0])
+            keyboard = classdemo.Keyboard(
+                id=int(keyboard_id[0].split('p')[1]),
+                name=keyboard_name[0]
+            )
+            keyboard_list.append(keyboard)
+        else:
+            continue
 
 # print(mice_list)
 # for index in mice_list:

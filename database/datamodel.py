@@ -16,9 +16,9 @@ class Mice(Base):
     key_number = Column(String(30), comment='按键数')
     wheel_direction = Column(String(30), comment='滚轮方向')
 
-    color = Column(String(30), comment='颜色')
+    color = Column(String(50), comment='颜色')
     line_lenght = Column(String(30), comment='线长')
-    size = Column(String(30), comment='尺寸')
+    size = Column(String(50), comment='尺寸')
     weight = Column(String(30), comment='重量')
 
 
@@ -35,10 +35,10 @@ class Keyboard(Base):
     key_number = Column(String(30), comment='按键数')
     keyboard_layout = Column(String(30), comment='键盘布局')
 
-    axis = Column(String(70), comment='轴')
+    axis = Column(String(150), comment='轴')
 
     color = Column(String(30), comment='颜色')
-    size = Column(String(30), comment='尺寸')
+    size = Column(String(100), comment='尺寸')
     weight = Column(String(30), comment='重量')
     supply_mode = Column(String(30), comment='供电模式')
 

@@ -12,30 +12,33 @@ if not os.path.exists('./picture'):
 # 建立放置外设数据（json文件）的文件夹
 if not os.path.exists('./data'):
     os.mkdir('./data')
-
-url = 'https://detail.zol.com.cn/mice/'
-headers = {
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
-}
-# 获取鼠标页面的html文档
-page_text = requests.get(url=url, headers=headers).text
-# 将其实例化至tree中
-compare_tree = etree.HTML(page_text)
-mice_li = compare_tree.xpath('//*[@id="J_PicMode"]/li')
+# 初始化鼠标列表
 mice_list = []
-for index in mice_li:
-    mice_id = index.xpath('./@data-follow-id')
-    mice_name = index.xpath('./a/img/@alt')
-    if mice_id:
-        # print(mice_id[0].split('p')[1])
-        # print(mice_name[0])
-        mice = classdemo.Mice(
-            id=int(mice_id[0].split('p')[1]),
-            name=mice_name[0]
-        )
-        mice_list.append(mice)
-    else:
-        continue
+
+for num in range(1,4):
+
+    url = 'https://detail.zol.com.cn/mice/'+str(num)+'.html'
+    headers = {
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
+    }
+    # 获取鼠标页面的html文档
+    page_text = requests.get(url=url, headers=headers).text
+    # 将其实例化至tree中
+    compare_tree = etree.HTML(page_text)
+    mice_li = compare_tree.xpath('//*[@id="J_PicMode"]/li')
+    for index in mice_li:
+        mice_id = index.xpath('./@data-follow-id')
+        mice_name = index.xpath('./a/img/@alt')
+        if mice_id:
+            # print(mice_id[0].split('p')[1])
+            # print(mice_name[0])
+            mice = classdemo.Mice(
+                id=int(mice_id[0].split('p')[1]),
+                name=mice_name[0]
+            )
+            mice_list.append(mice)
+        else:
+            continue
 
 # print(mice_list)
 # for index in mice_list:

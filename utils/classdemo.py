@@ -1,8 +1,6 @@
 import json
 from typing import Optional, Any, Union
 from pydantic import BaseModel, Field
-from database import datamodel
-from sqlalchemy import Column, Integer, String
 
 
 class Collection(BaseModel):
