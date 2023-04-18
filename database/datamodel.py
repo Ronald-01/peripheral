@@ -42,6 +42,24 @@ class Keyboard(Base):
     weight = Column(String(30), comment='重量')
     supply_mode = Column(String(30), comment='供电模式')
 
+class Lcd(Base):
+    """显示器"""
+    __tablename__ = 'lcd'
+    id = Column(Integer, nullable=False, primary_key=True, comment='标识符')
+    name = Column(String(50), unique=True, nullable=False, comment='名称')
+
+    product_type = Column(String(30), comment='产品类型')
+    screen_size = Column(String(30), comment='屏幕尺寸')
+    screen_ratio = Column(String(30), comment='屏幕比例')
+    response_time = Column(String(30), comment='响应时间')
+    optimal_resolution = Column(String(30), comment='最佳分辨率')
+
+
+    display_color = Column(String(30), comment='显示颜色')
+    brightness = Column(String(100), comment='亮度')
+    refresh_rate = Column(String(30), comment='刷新率')
+
+
 
 class User(Base):
     """用户"""
@@ -63,3 +81,5 @@ class Collection(Base):
     type = Column(Integer, nullable=False,primary_key=True, comment='类型')
     number = Column(String(30), nullable=False,primary_key=True, comment='账户')
     collection_id = Column(Integer, nullable=False,primary_key=True, comment='收藏品id')
+
+

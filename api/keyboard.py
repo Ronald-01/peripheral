@@ -56,3 +56,19 @@ async def get_keyboard(id: int,
             message='查找成功',
             model=db_keyboard
         )
+
+
+async def search_all(db: Session = Depends(get_db)):
+    db_keyboard_list = db.query(datamodel.Keyboard).all()
+    return db_keyboard_list
+
+
+@router.get('/all', response_model=classdemo.message)
+async def get_keyboard_all(db: Session = Depends(get_db)):
+    db_keyboard_list = await search_all(db)
+    
+    return classdemo.message(
+        code=0,
+        message='查找成功',
+        model=db_keyboard_list
+    )

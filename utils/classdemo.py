@@ -77,6 +77,26 @@ class Keyboard(BaseModel):
     class Config:
         orm_mode = True
 
+class Lcd(BaseModel):
+    """显示器"""
+    id: int = Field(None, description='标识符')
+    name: str = Field(None, description='名称')
+
+    product_type: Optional[str] = Field(None, description='产品类型')
+    screen_size: Optional[str] = Field(None, description='屏幕尺寸')
+    screen_ratio: Optional[str] = Field(None, description='屏幕比例')
+    response_time: Optional[str] = Field(None, description='响应时间')
+    optimal_resolution: Optional[str] = Field(None, description='最佳分辨率')
+
+
+    display_color: Optional[str] = Field(None, description='显示颜色')
+    brightness: Optional[str] = Field(None, description='亮度')
+    refresh_rate: Optional[str] = Field(None, description='刷新率')
+
+    class Config:
+        orm_mode = True
+
+
 
 class message(BaseModel):
     code: int

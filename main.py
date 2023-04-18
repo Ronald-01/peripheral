@@ -31,10 +31,11 @@ app.add_middleware(
     allow_headers=['*']
 )
 
-from api import mice, keyboard, picture, user, collection
+from api import mice, keyboard, picture, user, collection, lcd
 from database import security
 
 # 路由
+app.include_router(lcd.router)
 app.include_router(mice.router)
 app.include_router(keyboard.router)
 app.include_router(picture.router)

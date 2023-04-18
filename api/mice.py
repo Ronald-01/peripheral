@@ -57,3 +57,18 @@ async def get_mice(id: int,
             message='查找成功',
             model=db_mice
         )
+
+async def search_all(db: Session = Depends(get_db)):
+    db_mice_list = db.query(datamodel.Mice).all()
+    return db_mice_list
+
+
+@router.get('/all', response_model=classdemo.message)
+async def get_mice_all(db: Session = Depends(get_db)):
+    db_mice_list = await search_all(db)
+    
+    return classdemo.message(
+        code=0,
+        message='查找成功',
+        model=db_mice_list
+    )
