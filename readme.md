@@ -1,10 +1,12 @@
 ### 目录结构
 ```shell
-code/
+picture/ #存放爬取的设备图片。
+peripheral/ #项目代码。
     api/ #存储项目的API信息。
         __init__.py
         collection.py #收藏接口代码。
         keyboard.py #键盘接口代码。
+        lcd.py #显示器接口代码。
         mice.py #鼠标接口代码。
         picture.py #图片接口代码。
         user.py #用户接口代码。
@@ -13,33 +15,26 @@ code/
         database.py #存储数据库连接和数据库操作的代码。
         datamodel.py #存储数据库表的模型。
         security.py #存储安全性函数。
+    code/ #安装虚拟环境的文件夹。
     utils/ #存储项目的工具函数。
         data/ #存储项目的初始json数据。
-        picture/ #存储项目的初始图片数据。
         classdemo.py #存储用于数据存储或返回或请求的类。
         导入数据.py #将爬取的数据导入数据库。
         爬取键盘数据.py #从网页爬取键盘数据。
         爬取鼠标数据.py #从网页爬取鼠标数据。
+        爬取显示器数据.py #从网页爬取显示器数据。
     main.py #项目的入口文件，负责初始化FastAPI实例和加载路由。
+    nohup.out #打印输出的out文件
+    setup.py #项目后端启动文件
     requirements.txt #存储项目的依赖项列表。                          
 ```
 ### 依赖
 
 1. python 3.9
-
-​	需要安装如下模块：
-
-​	fastapi, jose, bcrypt, sqlalchemy
-
-​	通过下面一条命令安装。
-
-```shell
-pip install fastapi[all] python-jose[cryptography] passlib[bcrypt] sqlalchemy
-pip install mysql-connector
-```
-
 2. openssl
 3. mysql 8.0
+等，具体见requirements.txt
+
 
 ### 运行之前
 
