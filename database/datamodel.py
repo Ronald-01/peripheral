@@ -77,9 +77,7 @@ class Collection(Base):
     """收藏"""
     __tablename__ = 'collection'
 
-    # 0为鼠标，1为键盘
+    # 0为鼠标，1为键盘，2为显示器
     type = Column(Integer, nullable=False,primary_key=True, comment='类型')
     number = Column(String(30), nullable=False,primary_key=True, comment='账户')
     collection_id = Column(Integer, nullable=False,primary_key=True, comment='收藏品id')
-
-

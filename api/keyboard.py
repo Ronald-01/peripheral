@@ -35,13 +35,34 @@ async def create_keyboard(keyboard_form: classdemo.Keyboard,
     )
 
 
+async def search_by_name(name: str, db: Session = Depends(get_db)):
+    db_model = db.query(datamodel.Keyboard).filter(datamodel.Keyboard.name.like(f'%{name}%')).all()
+    return db_model
+    
+@router.get('/get', response_model=classdemo.message)
+async def get_keyboard(name: str,
+                   db: Session = Depends(get_db)):
+    db_model = await search_by_name(name, db)
+    if db_model is None:
+        return classdemo.message(
+            code=1,
+            message='查找失败',
+            model=None
+        )
+    else:
+        return classdemo.message(
+            code=0,
+            message='查找成功',
+            model=db_model
+        )
+
 async def search_by_id(id: int, db: Session = Depends(get_db)):
     db_keyboard = db.query(datamodel.Keyboard).filter(datamodel.Keyboard.id == id).first()
     return db_keyboard
 
 
-@router.get('/get', response_model=classdemo.message)
-async def get_keyboard(id: int,
+@router.get('/get_by_id', response_model=classdemo.message)
+async def get_keyboard_by_id(id: int,
                        db: Session = Depends(get_db)):
     db_keyboard = await search_by_id(id, db)
     if db_keyboard is None:

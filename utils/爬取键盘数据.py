@@ -184,7 +184,26 @@ for index in keyboard_list:
     with open('./data/' + str(index.id) + '_keyboard.json', 'w', encoding='utf-8') as fp:
         fp.write(index_json)
 
-    x += 1
+    try:
+        index.id = x
+        # 将鼠标数据保存为json文件
+        index_dic = index.__dict__
+        index_json = json.dumps(index_dic)
+        with open('./data/' + str(index.id) + '_keyboard.json', 'w', encoding='utf-8') as fp:
+            fp.write(index_json)
+        # type_name = file_name.split('_')[1].split('.')[0]
+        url = 'http://127.0.0.1:8000/' + 'keyboard' + '/create'
+        # print(url)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
+        }
+        response = requests.post(url=url, data=index_json, headers=headers)
+        x += 1
+
+    except:
+        continue
+    finally:
+        print(response)
     # demo = classdemo.Mice(1314775, 'Razer 毒蝰迷你版有线游戏鼠标', '竞技游戏', '普通鼠'
     #                       , '光电', '有线', 'USB', '6个', '双向滚轮', '黑色', '1.8m',
     #                       '118.3×56.1×38.3mm', '61g')

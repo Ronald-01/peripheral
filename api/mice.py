@@ -36,13 +36,36 @@ async def create_mice(mice_form: classdemo.Mice,
     )
 
 
+
+async def search_by_name(name: str, db: Session = Depends(get_db)):
+    db_model = db.query(datamodel.Mice).filter(datamodel.Mice.name.like(f'%{name}%')).all()
+    return db_model
+    
+@router.get('/get', response_model=classdemo.message)
+async def get_mice(name: str,
+                   db: Session = Depends(get_db)):
+    db_model = await search_by_name(name, db)
+    if db_model is None:
+        return classdemo.message(
+            code=1,
+            message='查找失败',
+            model=None
+        )
+    else:
+        return classdemo.message(
+            code=0,
+            message='查找成功',
+            model=db_model
+        )
+
+
 async def search_by_id(id: int, db: Session = Depends(get_db)):
     db_mice = db.query(datamodel.Mice).filter(datamodel.Mice.id == id).first()
     return db_mice
 
 
-@router.get('/get', response_model=classdemo.message)
-async def get_mice(id: int,
+@router.get('/get_by_id', response_model=classdemo.message)
+async def get_mice_by_id(id: int,
                    db: Session = Depends(get_db)):
     db_mice = await search_by_id(id, db)
     if db_mice is None:
@@ -72,3 +95,4 @@ async def get_mice_all(db: Session = Depends(get_db)):
         message='查找成功',
         model=db_mice_list
     )
+

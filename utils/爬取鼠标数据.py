@@ -183,18 +183,49 @@ for index in mice_list:
     index.weight = temp
 
 
+    try:
+        index.id = x
+        # 将鼠标数据保存为json文件
+        index_dic = index.__dict__
+        index_json = json.dumps(index_dic)
+        with open('./data/' + str(index.id) + '_mice.json', 'w', encoding='utf-8') as fp:
+            fp.write(index_json)
+        # type_name = file_name.split('_')[1].split('.')[0]
+        url = 'http://127.0.0.1:8000/' + 'mice' + '/create'
+        # print(url)
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
+        }
+        response = requests.post(url=url, data=index_json, headers=headers)
+        x += 1
 
-    index.id = x
-    # 将鼠标数据保存为json文件
-    index_dic = index.__dict__
-    index_json = json.dumps(index_dic)
-    with open('./data/' + str(index.id) + '_mice.json', 'w', encoding='utf-8') as fp:
-        fp.write(index_json)
+    except:
+        continue
+    finally:
+        print(response)
 
-    x += 1
     # demo = classdemo.Mice(1314775, 'Razer 毒蝰迷你版有线游戏鼠标', '竞技游戏', '普通鼠'
     #                       , '光电', '有线', 'USB', '6个', '双向滚轮', '黑色', '1.8m',
     #                       '118.3×56.1×38.3mm', '61g')
     # with open('对比1.html','w',encoding='utf-8') as fp:
     #     fp.write(response)
     # break
+    # folder_path = "./data"  # change this to your folder path
+    # for file_name in os.listdir(folder_path):
+    #     # print()
+    #     # break
+    #     if file_name.endswith(".json"):
+    #         file_path = os.path.join(folder_path, file_name)
+    #         # 将json读取为字典
+    #         with open(file_path, "r", encoding="utf8") as fp:
+    #             json_data = fp.read()
+    #             # 不用将其转化为字典，因为fastapi接口是双引号，而字典是单引号
+    #             # json_data = json.load(fp)
+    #         type_name = file_name.split('_')[1].split('.')[0]
+    #         url = 'http://127.0.0.1:8000/' + type_name + '/create'
+    #         # print(url)
+    #         headers = {
+    #             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36 Edg/110.0.1587.41'
+    #         }
+    #         response = requests.post(url=url, data=json_data, headers=headers)
+    #         print(response)

@@ -58,3 +58,5 @@ async def get_user(number: str,
             message='查找成功',
             model=db_user
         )
+
+

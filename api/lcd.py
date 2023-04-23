@@ -31,14 +31,34 @@ async def create_lcd(lcd_form: classdemo.Lcd,
         model=db_lcd
     )
 
+async def search_by_name(name: str, db: Session = Depends(get_db)):
+    db_model = db.query(datamodel.Lcd).filter(datamodel.Lcd.name.like(f'%{name}%')).all()
+    return db_model
+    
+@router.get('/get', response_model=classdemo.message)
+async def get_lcd(name: str,
+                   db: Session = Depends(get_db)):
+    db_model = await search_by_name(name, db)
+    if db_model is None:
+        return classdemo.message(
+            code=1,
+            message='查找失败',
+            model=None
+        )
+    else:
+        return classdemo.message(
+            code=0,
+            message='查找成功',
+            model=db_model
+        )
 
 async def search_by_id(id: int, db: Session = Depends(get_db)):
     db_lcd = db.query(datamodel.Lcd).filter(datamodel.Lcd.id == id).first()
     return db_lcd
 
 
-@router.get('/get', response_model=classdemo.message)
-async def get_lcd(id: int,
+@router.get('/get_by_id', response_model=classdemo.message)
+async def get_lcd_by_id(id: int,
                        db: Session = Depends(get_db)):
     db_lcd = await search_by_id(id, db)
     if db_lcd is None:
